@@ -62,13 +62,13 @@ abstract class BaseChartPainter extends CustomPainter {
     time ~/= 1000;
     //月线
     if (time >= 24 * 60 * 60 * 28)
-      mFormats = [M, '.', yyyy];
+      mFormats = [mm, '.', yyyy];
     //日线等
     else if (time >= 24 * 60 * 60)
       mFormats = [dd, '.', mm, '.', yyyy];
     //小时线等
     else
-      mFormats = [HH, ':', nn];
+      mFormats = [dd, '.', mm, ' ', HH, ':', nn];
   }
 
   @override
@@ -122,8 +122,7 @@ abstract class BaseChartPainter extends CustomPainter {
 
   void initRect(Size size) {
     double volHeight = volHidden != true ? mDisplayHeight * 0.2 : 0;
-    double secondaryHeight =
-        secondaryState != SecondaryState.NONE ? mDisplayHeight * 0.2 : 0;
+    double secondaryHeight = secondaryState != SecondaryState.NONE ? mDisplayHeight * 0.2 : 0;
 
     double mainHeight = mDisplayHeight;
     mainHeight -= volHeight;
@@ -138,11 +137,7 @@ abstract class BaseChartPainter extends CustomPainter {
 
     //secondaryState == SecondaryState.NONE隐藏副视图
     if (secondaryState != SecondaryState.NONE) {
-      mSecondaryRect = Rect.fromLTRB(
-          0,
-          mMainRect.bottom + volHeight + mChildPadding,
-          mWidth,
-          mMainRect.bottom + volHeight + secondaryHeight);
+      mSecondaryRect = Rect.fromLTRB(0, mMainRect.bottom + volHeight + mChildPadding, mWidth, mMainRect.bottom + volHeight + secondaryHeight);
     }
   }
 
