@@ -62,13 +62,13 @@ abstract class BaseChartPainter extends CustomPainter {
     time ~/= 1000;
     //月线
     if (time >= 24 * 60 * 60 * 28)
-      mFormats = [mm, '.', yyyy];
+      mFormats = [yy, '-', mm];
     //日线等
     else if (time >= 24 * 60 * 60)
-      mFormats = [dd, '.', mm, '.', yyyy];
+      mFormats = [yy, '-', mm, '-', dd];
     //小时线等
     else
-      mFormats = [dd, '.', mm, ' ', HH, ':', nn];
+      mFormats = [mm, '-', dd, ' ', HH, ':', nn];
   }
 
   @override
