@@ -278,7 +278,9 @@ abstract class BaseChartPainter extends CustomPainter {
   ///根据索引索取x坐标
   ///+ mPointWidth / 2防止第一根和最后一根k线显示不���
   ///@param position 索引值
-  double getX(int position) => position * mPointWidth + mPointWidth / 2;
+  //double getX(int position) => position * mPointWidth + mPointWidth / 2;
+  //TODO Test: POSITION
+  double getX(int position) => position.toDouble();
 
   Object getItem(int position) {
     if (datas != null) {
@@ -293,10 +295,9 @@ abstract class BaseChartPainter extends CustomPainter {
       mTranslateX = scrollX + getMinTranslateX();
 
   ///获取平移的最小值
-  //TODO TEST: WHY X USING? 
+  //Scroll amount 
   double getMinTranslateX() {
-   // var x = -mDataLen + mWidth / scaleX - mPointWidth / 2;
-    var x=mDataLen;
+    var x = -mDataLen + mWidth / scaleX - mPointWidth / 2;
     return x >= 0 ? 0.0 : x;
   }
 
