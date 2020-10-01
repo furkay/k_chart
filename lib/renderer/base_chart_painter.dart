@@ -38,7 +38,6 @@ abstract class BaseChartPainter extends CustomPainter {
 
   //Main Date
   List<String> mFormats = [dd, '.', M, '.', yyyy, ' ', HH, ':', nn]; //格式化时间
-  
 
   BaseChartPainter(
       {@required this.datas,
@@ -64,13 +63,14 @@ abstract class BaseChartPainter extends CustomPainter {
     time ~/= 1000;
     //月线
     if (time >= 24 * 60 * 60 * 28)
-      mFormats = [mm, '.', yyyy];
+      mFormats = [M, '.', yyyy];
     //日线等
     else if (time >= 24 * 60 * 60)
-      mFormats = [yy, '-', mm, '-', dd];
+      mFormats = [yy, '.', mm, '.', dd];
     //小时线等
     else
-      mFormats = [dd, '.', mm, ' ', HH, ':', nn];
+      //  mFormats = [dd, '.', M, ' ', HH, ':', nn];
+      mFormats = [HH, ':', nn];
   }
 
   @override
@@ -85,8 +85,8 @@ abstract class BaseChartPainter extends CustomPainter {
     canvas.scale(1, 1);
     drawBg(canvas, size);
 
-    //TODO GRİDS 
-   // drawGrid(canvas);
+    //TODO GRİDS
+    // drawGrid(canvas);
     if (datas != null && datas.isNotEmpty) {
       drawChart(canvas, size);
       drawRightText(canvas);
@@ -126,7 +126,8 @@ abstract class BaseChartPainter extends CustomPainter {
 
   void initRect(Size size) {
     double volHeight = volHidden != true ? mDisplayHeight * 0.2 : 0;
-    double secondaryHeight = secondaryState != SecondaryState.NONE ? mDisplayHeight * 0.2 : 0;
+    double secondaryHeight =
+        secondaryState != SecondaryState.NONE ? mDisplayHeight * 0.2 : 0;
 
     double mainHeight = mDisplayHeight;
     mainHeight -= volHeight;
@@ -141,7 +142,11 @@ abstract class BaseChartPainter extends CustomPainter {
 
     //secondaryState == SecondaryState.NONE隐藏副视图
     if (secondaryState != SecondaryState.NONE) {
-      mSecondaryRect = Rect.fromLTRB(0, mMainRect.bottom + volHeight + mChildPadding, mWidth, mMainRect.bottom + volHeight + secondaryHeight);
+      mSecondaryRect = Rect.fromLTRB(
+          0,
+          mMainRect.bottom + volHeight + mChildPadding,
+          mWidth,
+          mMainRect.bottom + volHeight + secondaryHeight);
     }
   }
 
