@@ -177,10 +177,13 @@ class ChartPainter extends BaseChartPainter {
 //    }
   }
 
+//INFO BOX
   Paint selectPointPaint = Paint()
     ..isAntiAlias = true
     ..strokeWidth = 0.5
     ..color = ChartColors.selectFillColor;
+  //INFO BOX
+
   Paint selectorBorderPaint = Paint()
     ..isAntiAlias = true
     ..strokeWidth = 0.5
@@ -303,8 +306,10 @@ class ChartPainter extends BaseChartPainter {
   void drawCrossLine(Canvas canvas, Size size) {
     var index = calculateSelectedX(selectX);
     KLineEntity point = getItem(index);
+    //Cross Line
+
     Paint paintY = Paint()
-      ..color = Colors.white12
+      ..color = Colors.black
       ..strokeWidth = ChartStyle.vCrossWidth
       ..isAntiAlias = true;
     double x = getX(index);
@@ -312,9 +317,9 @@ class ChartPainter extends BaseChartPainter {
     // k线图竖线
     canvas.drawLine(Offset(x, mTopPadding),
         Offset(x, size.height - mBottomPadding), paintY);
-
+//Cross Line
     Paint paintX = Paint()
-      ..color = Colors.white
+      ..color = Colors.black
       ..strokeWidth = ChartStyle.hCrossWidth
       ..isAntiAlias = true;
     // k线图横线
