@@ -324,7 +324,7 @@ class ChartPainter extends BaseChartPainter {
   }
 
   TextPainter getTextPainter(text, [color = ChartColors.defaultTextColor]) {
-    TextSpan span = TextSpan(text: "Test : $text", style: getTextStyle(color));
+    TextSpan span = TextSpan(text: "$text", style: getTextStyle(color));
     TextPainter tp = TextPainter(text: span, textDirection: TextDirection.ltr);
     tp.layout();
     return tp;
