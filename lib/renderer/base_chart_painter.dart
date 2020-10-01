@@ -66,7 +66,11 @@ abstract class BaseChartPainter extends CustomPainter {
       mFormats = [M, '.', yyyy];
     //TODO Week
     else if (time >= 7 * 24 * 60 * 60)
-      mFormats = [dd,'', M,];
+      mFormats = [
+        dd,
+        '',
+        M,
+      ];
     //TODO Day
     else if (time >= 24 * 60 * 60)
       mFormats = [dd, '.', mm, '.', yy];
@@ -278,9 +282,9 @@ abstract class BaseChartPainter extends CustomPainter {
   ///根据索引索取x坐标
   ///+ mPointWidth / 2防止第一根和最后一根k线显示不���
   ///@param position 索引值
+  //TODO POSITION
   //double getX(int position) => position * mPointWidth + mPointWidth / 2;
-  //TODO Test: POSITION
-  double getX(int position) => position.toDouble();
+  double getX(int position) => mPointWidth;
 
   Object getItem(int position) {
     if (datas != null) {
@@ -295,7 +299,7 @@ abstract class BaseChartPainter extends CustomPainter {
       mTranslateX = scrollX + getMinTranslateX();
 
   ///获取平移的最小值
-  //Scroll amount 
+  //Scroll amount
   double getMinTranslateX() {
     var x = -mDataLen + mWidth / scaleX - mPointWidth / 2;
     return x >= 0 ? 0.0 : x;

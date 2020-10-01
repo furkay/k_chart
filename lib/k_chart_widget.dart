@@ -12,7 +12,7 @@ enum MainState { MA, BOLL, NONE }
 enum SecondaryState { MACD, KDJ, RSI, WR, NONE }
 
 class TimeFormat {
-  static const List<String> YEAR_MONTH_DAY = [yyyy, '-', mm, '-', dd];
+  static const List<String> YEAR_MONTH_DAY = [yyyy, '.', mm, '.', dd];
   
   //TODO CHOOSEN
   static const List<String> YEAR_MONTH_DAY_WITH_HOUR = [
