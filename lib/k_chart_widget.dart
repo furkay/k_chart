@@ -16,7 +16,7 @@ class TimeFormat {
   static const List<String> YEAR_MONTH_DAY_WITH_HOUR = [
     dd,
     '.',
-    mm,
+    M,
     '.',
     yyyy,
     ' ',
@@ -241,6 +241,17 @@ class _KChartWidgetState extends State<KChartWidget>
     "成交额"
   ];
   final List<String> infoNamesEN = [
+    "Date",
+    "Open",
+    "High",
+    "Low",
+    "Close",
+    "Change",
+    "Change%",
+    "Amount"
+  ];
+//TODO TURKISH
+   final List<String> infoNamesTR = [
     "Date",
     "Open",
     "High",
