@@ -180,11 +180,11 @@ class ChartPainter extends BaseChartPainter {
   Paint selectPointPaint = Paint()
     ..isAntiAlias = true
     ..strokeWidth = 0.5
-    ..color = Colors.black;
+    ..color = Colors.red;
   Paint selectorBorderPaint = Paint()
     ..isAntiAlias = true
     ..strokeWidth = 0.5
-    ..style = Colors.black
+    ..style = Colors.red
     ..color = ChartColors.selectBorderColor;
 
   @override
