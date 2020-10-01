@@ -234,7 +234,7 @@ String dateFormat(DateTime date, List<String> formats) {
     } else if (format == MM) {
       sb.write(monthLong[date.month - 1]);
     } else if (format == M) {
-      sb.write(monthShort[date.month - 1]);
+      sb.write(monthTrShort[date.month - 1]);
     } else if (format == dd) {
       sb.write(_digits(date.day, 2));
     } else if (format == d) {
@@ -310,6 +310,21 @@ String _digits(int value, int length) {
   }
   return ret;
 }
+
+const List<String> monthTrShort = const <String>[
+  'Oca',
+  'Şub.',
+  'Mar',
+  'Nis',
+  'May',
+  'Haz',
+  'Tem',
+  'Ağu',
+  'Eyl',
+  'Eki',
+  'Kas',
+  'Ara'
+];
 
 const List<String> monthShort = const <String>[
   'Jan',
