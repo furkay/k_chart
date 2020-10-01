@@ -27,10 +27,12 @@ class ChartColors {
   static const Color depthBuyColor = Color(0xff60A893);
   static const Color depthSellColor = Color(0xffC15866);
   //选中后显示值边框颜色
-  static const Color selectBorderColor = Color(0xff6C7A86);
+  // static const Color selectBorderColor = Color(0xff6C7A86);
+   static const Color selectBorderColor = Color(0xffff0000);
 
   //选中后显示值背景的填充颜色
-  static const Color selectFillColor = Color(0xff0D1722);
+ // static const Color selectFillColor = Color(0xff0D1722);
+  static const Color selectFillColor = Color(0xffff0000);
 
   static Color getMAColor(int index) {
     Color maColor = ma5Color;
