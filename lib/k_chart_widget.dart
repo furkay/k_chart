@@ -18,7 +18,7 @@ class TimeFormat {
   static const List<String> YEAR_MONTH_DAY_WITH_HOUR = [
     dd,
     '.',
-    M,
+    mm,
     '.',
     yyyy,
     ' ',
