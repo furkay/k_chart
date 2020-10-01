@@ -282,9 +282,7 @@ abstract class BaseChartPainter extends CustomPainter {
   ///根据索引索取x坐标
   ///+ mPointWidth / 2防止第一根和最后一根k线显示不���
   ///@param position 索引值
-  //TODO POSITION
-  //double getX(int position) => position * mPointWidth + mPointWidth / 2;
-  double getX(int position) => mPointWidth;
+  double getX(int position) => position * mPointWidth + mPointWidth / 2;
 
   Object getItem(int position) {
     if (datas != null) {
