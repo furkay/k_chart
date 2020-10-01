@@ -36,6 +36,7 @@ abstract class BaseChartPainter extends CustomPainter {
   double mDataLen = 0.0; //数据占屏幕总长度
   double mPointWidth = ChartStyle.pointWidth;
   List<String> mFormats = [dd, '.', mm, '.', yyyy, ' ', HH, ':', nn]; //格式化时间
+  
 
   BaseChartPainter(
       {@required this.datas,
