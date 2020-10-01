@@ -61,16 +61,16 @@ abstract class BaseChartPainter extends CustomPainter {
     int secondTime = datas[1]?.time ?? 0;
     int time = secondTime - firstTime;
     time ~/= 1000;
-    //Month
+    //TODO Month
     if (time >= 24 * 60 * 60 * 28)
       mFormats = [M, '.', yyyy];
-    //Week
+    //TODO Week
     else if (time >= 7 * 24 * 60 * 60)
       mFormats = [dd,'', M,];
-    //Day
+    //TODO Day
     else if (time >= 24 * 60 * 60)
       mFormats = [dd, '.', mm, '.', yy];
-    //Other
+    //TODO Other
     else
       //  mFormats = [dd, '.', M, ' ', HH, ':', nn];
       mFormats = [HH, ':', nn];
@@ -293,8 +293,10 @@ abstract class BaseChartPainter extends CustomPainter {
       mTranslateX = scrollX + getMinTranslateX();
 
   ///获取平移的最小值
+  //TODO TEST: WHY X USING? 
   double getMinTranslateX() {
-    var x = -mDataLen + mWidth / scaleX - mPointWidth / 2;
+   // var x = -mDataLen + mWidth / scaleX - mPointWidth / 2;
+    var x=mDataLen;
     return x >= 0 ? 0.0 : x;
   }
 
