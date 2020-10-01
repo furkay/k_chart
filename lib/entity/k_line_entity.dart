@@ -9,7 +9,7 @@ class KLineEntity extends KEntity {
   double amount;
   double change;
   double ratio;
-  int time;
+  DateTime time;
 
   KLineEntity.fromCustom({
     this.amount,
