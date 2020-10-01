@@ -71,7 +71,7 @@ class ChartStyle {
   static const double macdWidth = 3.0;
 
   //垂直交叉线宽度
-  static const double vCrossWidth = 8.5;
+  static const double vCrossWidth = 0.5;
 
   //水平交叉线宽度
   static const double hCrossWidth = 0.5;

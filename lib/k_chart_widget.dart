@@ -13,10 +13,12 @@ enum SecondaryState { MACD, KDJ, RSI, WR, NONE }
 
 class TimeFormat {
   static const List<String> YEAR_MONTH_DAY = [yyyy, '-', mm, '-', dd];
+  
+  //TODO CHOOSEN
   static const List<String> YEAR_MONTH_DAY_WITH_HOUR = [
     dd,
     '.',
-    mm,
+    M,
     '.',
     yyyy,
     ' ',
@@ -24,6 +26,8 @@ class TimeFormat {
     ':',
     nn
   ];
+
+
 }
 
 class KChartWidget extends StatefulWidget {
@@ -250,6 +254,17 @@ class _KChartWidgetState extends State<KChartWidget>
     "Change%",
     "Amount"
   ];
+
+   final List<String> infoNamesTR = [
+    "Gün",
+    "Açılış",
+    "Yüksek",
+    "Düşük",
+    "Kapanış",
+    "Değişim",
+    "Değişim%",
+    "Miktar"
+  ];
   List<String> infos;
 
   Widget _buildInfoDialog() {
@@ -289,7 +304,7 @@ class _KChartWidgetState extends State<KChartWidget>
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return _buildItem(infos[index],
-                    widget.isChinese ? infoNamesCN[index] : infoNamesEN[index]);
+                    widget.isChinese ? infoNamesCN[index] : infoNamesTR[index]);
               },
             ),
           );
