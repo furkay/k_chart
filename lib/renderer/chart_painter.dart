@@ -324,14 +324,14 @@ class ChartPainter extends BaseChartPainter {
   }
 
   TextPainter getTextPainter(text, [color = ChartColors.defaultTextColor]) {
-    TextSpan span = TextSpan(text: "$text", style: getTextStyle(color));
+    TextSpan span = TextSpan(text: "Test : $text", style: getTextStyle(color));
     TextPainter tp = TextPainter(text: span, textDirection: TextDirection.ltr);
     tp.layout();
     return tp;
   }
 
-  String getDate(int date) =>
-      dateFormat(DateTime.fromMillisecondsSinceEpoch(date), mFormats);
+  String getDate(DateTime date) =>
+      dateFormat(date, mFormats);
 
   double getMainY(double y) => mMainRenderer?.getY(y) ?? 0.0;
 }
