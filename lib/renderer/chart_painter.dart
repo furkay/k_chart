@@ -339,8 +339,7 @@ class ChartPainter extends BaseChartPainter {
   String getDate(int date) {
     intl.Intl.defaultLocale = 'tr';
 
-    return dateFormat(
-        DateTime.fromMillisecondsSinceEpoch(date).toLocal(), mFormats);
+    return dateFormat(DateTime.fromMillisecondsSinceEpoch(date).add(Duration(hours: 3)), mFormats);
   }
 
   double getMainY(double y) => mMainRenderer?.getY(y) ?? 0.0;
