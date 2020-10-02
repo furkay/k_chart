@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:k_chart/flutter_k_chart.dart';
 import 'chart_style.dart';
 import 'entity/info_window_entity.dart';
@@ -87,6 +88,8 @@ class _KChartWidgetState extends State<KChartWidget>
 
   @override
   void initState() {
+      Intl.defaultLocale = 'tr';
+
     super.initState();
     mInfoWindowStream = StreamController<InfoWindowEntity>();
   }
@@ -330,7 +333,7 @@ class _KChartWidgetState extends State<KChartWidget>
       ],
     );
   }
-
+  
   String getDate(int date) =>
-      dateFormat(DateTime.fromMillisecondsSinceEpoch(date).toLocal(), widget.timeFormat);
+      dateFormat(DateTime.fromMillisecondsSinceEpoch(date), widget.timeFormat);
 }
