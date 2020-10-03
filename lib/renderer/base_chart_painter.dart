@@ -63,17 +63,17 @@ abstract class BaseChartPainter extends CustomPainter {
     time ~/= 1000;
     //TODO Month
     if (time >= 24 * 60 * 60 * 28)
-      mFormats = [M, '.', yyyy];
+      mFormats = [dd, '.', M, '.', yy];
     //TODO Week
-    else if (time >= 7 * 24 * 60 * 60)
+    else if (time >= 24 * 60 * 60)
       mFormats = [
         dd,
         '',
         M,
       ];
     //TODO Day
-    else if (time >= 24 * 60 * 60)
-      mFormats = [dd, '.', mm, '.', yy];
+    // else if (time >= 24 * 60 * 60 * 28)
+    //  mFormats = [dd, '.', mm, '.', yy];
     //TODO Other
     else
       //  mFormats = [dd, '.', M, ' ', HH, ':', nn];

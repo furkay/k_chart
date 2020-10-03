@@ -131,6 +131,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
         getY(curPrice), curX, getY(curPrice));
 
 //    //画阴影
+//Chart Fill Color
     mLineFillShader ??= LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
