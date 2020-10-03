@@ -15,8 +15,8 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   Rect _contentRect;
   double _contentPadding = 5.0;
   List<int> maDayList;
-  static Color lineColorC;
-  static Color lineFillColorC;
+  static Color lineColorC = ChartColors.kLineColor;
+  static Color lineFillColorC = ChartColors.lineFillColor;
   MainRenderer(Rect mainRect, double maxValue, double minValue,
       double topPadding, this.state, this.isLine, int fixedLength,
       {this.maDayList = const [5, 10, 20], this.lineColor, this.lineFillColor})
