@@ -39,6 +39,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
     lineColorC = lineColor;
     lineFillColorC = lineFillColor;
   }
+  static const chartGradientValue = <double>[0.0, 0.2, 0.4, 0.8, 1.0, 0.1];
 
   @override
   void drawText(Canvas canvas, CandleEntity data, double x) {
@@ -131,12 +132,18 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
 
 //    //画阴影
     mLineFillShader ??= LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      tileMode: TileMode.clamp,
-      colors: [lineFillColorC, Colors.transparent],
-    ).createShader(Rect.fromLTRB(
-        chartRect.left, chartRect.top, chartRect.right, chartRect.bottom));
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: chartGradientValue
+                .map(
+                  (f) => lineFillColorC.withAlpha(
+                    (255 * f).toInt(),
+                  ),
+                )
+                .toList(),
+            stops: chartGradientValue)
+        .createShader(Rect.fromLTRB(
+            chartRect.left, chartRect.top, chartRect.right, chartRect.bottom));
     mLineFillPaint..shader = mLineFillShader;
 
     mLineFillPath ??= Path();
