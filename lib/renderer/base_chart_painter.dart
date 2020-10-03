@@ -62,8 +62,10 @@ abstract class BaseChartPainter extends CustomPainter {
     int time = secondTime - firstTime;
     time ~/= 1000;
     //TODO Month
-    if (time >= 24 * 60 * 60 * 28)
+    if (time >= 3*24 * 60 * 60 * 28)
       mFormats = [dd, '.', M, '.', yy];
+    else if (time >= 24 * 60 * 60 * 28)
+      mFormats = [dd, '.', M];
     //TODO Week
     else if (time >= 24 * 60 * 60 * 7)
       mFormats = [
