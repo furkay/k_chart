@@ -7,15 +7,19 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   double mCandleWidth = ChartStyle.candleWidth;
   double mCandleLineWidth = ChartStyle.candleLineWidth;
   MainState state;
+  final Color lineColor;
+  final Color lineFillColor;
+
   bool isLine;
   //绘制的内容区域
   Rect _contentRect;
   double _contentPadding = 5.0;
   List<int> maDayList;
-
+  static Color lineColorC;
+  static Color lineFillColorC;
   MainRenderer(Rect mainRect, double maxValue, double minValue,
       double topPadding, this.state, this.isLine, int fixedLength,
-      [this.maDayList = const [5, 10, 20]])
+      {this.maDayList = const [5, 10, 20], this.lineColor, this.lineFillColor})
       : super(
             chartRect: mainRect,
             maxValue: maxValue,
@@ -32,6 +36,8 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       minValue /= 2;
     }
     scaleY = _contentRect.height / (maxValue - minValue);
+    lineColorC = lineColor;
+    lineFillColorC = lineFillColor;
   }
 
   @override
@@ -100,7 +106,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
     ..isAntiAlias = true
     ..style = PaintingStyle.stroke
     ..strokeWidth = 1.0
-    ..color = ChartColors.kLineColor;
+    ..color = lineColorC ?? ChartColors.kLineColor;
   Paint mLineFillPaint = Paint()
     ..style = PaintingStyle.fill
     ..isAntiAlias = true;
@@ -128,7 +134,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       tileMode: TileMode.clamp,
-      colors: [ChartColors.lineFillColor, Colors.transparent],
+      colors: [lineFillColorC, Colors.transparent],
     ).createShader(Rect.fromLTRB(
         chartRect.left, chartRect.top, chartRect.right, chartRect.bottom));
     mLineFillPaint..shader = mLineFillShader;

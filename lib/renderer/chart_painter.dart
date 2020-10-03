@@ -24,13 +24,16 @@ class ChartPainter extends BaseChartPainter {
   List<Color> bgColor;
   int fixedLength;
   List<int> maDayList;
-
+  final Color lineColor;
+  final Color lineFillColor;
   ChartPainter(
       {@required datas,
       @required scaleX,
       @required scrollX,
       @required isLongPass,
       @required selectX,
+      this.lineColor,
+      this.lineFillColor,
       mainState,
       volHidden,
       secondaryState,
@@ -63,7 +66,8 @@ class ChartPainter extends BaseChartPainter {
       }
     }
     mMainRenderer ??= MainRenderer(mMainRect, mMainMaxValue, mMainMinValue,
-        mTopPadding, mainState, isLine, fixedLength, maDayList);
+        mTopPadding, mainState, isLine, fixedLength,
+        maDayList: maDayList, lineColor: lineColor,lineFillColor:lineFillColor);
     if (mVolRect != null) {
       mVolRenderer ??= VolRenderer(
           mVolRect, mVolMaxValue, mVolMinValue, mChildPadding, fixedLength);

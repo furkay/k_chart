@@ -14,7 +14,7 @@ enum SecondaryState { MACD, KDJ, RSI, WR, NONE }
 
 class TimeFormat {
   static const List<String> YEAR_MONTH_DAY = [yyyy, '.', mm, '.', dd];
-  
+
   //TODO CHOOSEN
   static const List<String> YEAR_MONTH_DAY_WITH_HOUR = [
     dd,
@@ -27,8 +27,6 @@ class TimeFormat {
     ':',
     nn
   ];
-
-
 }
 
 class KChartWidget extends StatefulWidget {
@@ -47,25 +45,28 @@ class KChartWidget extends StatefulWidget {
   final int flingTime;
   final double flingRatio;
   final Curve flingCurve;
+  final Color lineColor;
+  final Color lineFillColor;
   final Function(bool) isOnDrag;
 
-  KChartWidget(
-    this.datas, {
-    this.mainState = MainState.MA,
-    this.secondaryState = SecondaryState.MACD,
-    this.volHidden = false,
-    this.isLine,
-    this.isChinese = true,
-    this.timeFormat = TimeFormat.YEAR_MONTH_DAY,
-    this.onLoadMore,
-    this.bgColor,
-    this.fixedLength,
-    this.maDayList = const [5, 10, 20],
-    this.flingTime = 600,
-    this.flingRatio = 0.5,
-    this.flingCurve = Curves.decelerate,
-    this.isOnDrag,
-  }) : assert(maDayList != null);
+  KChartWidget(this.datas,
+      {this.mainState = MainState.MA,
+      this.secondaryState = SecondaryState.MACD,
+      this.volHidden = false,
+      this.isLine,
+      this.isChinese = true,
+      this.timeFormat = TimeFormat.YEAR_MONTH_DAY,
+      this.onLoadMore,
+      this.bgColor,
+      this.fixedLength,
+      this.maDayList = const [5, 10, 20],
+      this.flingTime = 600,
+      this.flingRatio = 0.5,
+      this.flingCurve = Curves.decelerate,
+      this.isOnDrag,
+      this.lineColor,
+      this.lineFillColor})
+      : assert(maDayList != null);
 
   @override
   _KChartWidgetState createState() => _KChartWidgetState();
@@ -88,7 +89,7 @@ class _KChartWidgetState extends State<KChartWidget>
 
   @override
   void initState() {
-      Intl.defaultLocale = 'tr';
+    Intl.defaultLocale = 'tr';
 
     super.initState();
     mInfoWindowStream = StreamController<InfoWindowEntity>();
@@ -176,7 +177,9 @@ class _KChartWidgetState extends State<KChartWidget>
                 sink: mInfoWindowStream?.sink,
                 bgColor: widget.bgColor,
                 fixedLength: widget.fixedLength,
-                maDayList: widget.maDayList),
+                maDayList: widget.maDayList,
+                lineColor: widget.lineColor,
+                lineFillColor: widget.lineFillColor),
           ),
           _buildInfoDialog()
         ],
@@ -258,7 +261,7 @@ class _KChartWidgetState extends State<KChartWidget>
     "Amount"
   ];
 
-   final List<String> infoNamesTR = [
+  final List<String> infoNamesTR = [
     "Gün",
     "Açılış",
     "Yüksek",
@@ -333,7 +336,7 @@ class _KChartWidgetState extends State<KChartWidget>
       ],
     );
   }
-  
+
   String getDate(int date) =>
       dateFormat(DateTime.fromMillisecondsSinceEpoch(date), widget.timeFormat);
 }
