@@ -10,7 +10,7 @@ class KLineEntity extends KEntity {
   double vol;
   double change;
   double ratio;
-  DateTime time;
+  DateTime dateTime;
 
   KLineEntity({
     this.open,
@@ -20,8 +20,10 @@ class KLineEntity extends KEntity {
     this.vol,
     this.change,
     this.ratio,
-    this.time,
-  });
+    int time,
+  }) {
+    dateTime = DateTime.fromMillisecondsSinceEpoch(time);
+  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -32,7 +34,7 @@ class KLineEntity extends KEntity {
       'vol': vol,
       'change': change,
       'ratio': ratio,
-      'time': time?.millisecondsSinceEpoch,
+      'time': dateTime?.millisecondsSinceEpoch,
     };
   }
 
@@ -47,7 +49,7 @@ class KLineEntity extends KEntity {
       vol: map['vol'],
       change: map['change'],
       ratio: map['ratio'],
-      time: DateTime.fromMillisecondsSinceEpoch(map['time']),
+      time: map['time'],
     );
   }
 
