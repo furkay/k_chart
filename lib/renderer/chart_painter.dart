@@ -2,9 +2,9 @@ import 'dart:async' show StreamSink;
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:k_chart/utils/date_format_util.dart';
 import 'package:k_chart/utils/number_util.dart';
 import '../entity/k_line_entity.dart';
-import '../utils/date_format_util.dart';
 import '../entity/info_window_entity.dart';
 
 import 'base_chart_painter.dart';
@@ -26,6 +26,7 @@ class ChartPainter extends BaseChartPainter {
   List<int> maDayList;
   final Color lineColor;
   final Color lineFillColor;
+  final intl.DateFormat dateFormatter;
   ChartPainter(
       {@required datas,
       @required scaleX,
@@ -34,6 +35,7 @@ class ChartPainter extends BaseChartPainter {
       @required selectX,
       this.lineColor,
       this.lineFillColor,
+      this.dateFormatter,
       mainState,
       volHidden,
       secondaryState,
@@ -67,7 +69,9 @@ class ChartPainter extends BaseChartPainter {
     }
     mMainRenderer ??= MainRenderer(mMainRect, mMainMaxValue, mMainMinValue,
         mTopPadding, mainState, isLine, fixedLength,
-        maDayList: maDayList, lineColor: lineColor,lineFillColor:lineFillColor);
+        maDayList: maDayList,
+        lineColor: lineColor,
+        lineFillColor: lineFillColor);
     if (mVolRect != null) {
       mVolRenderer ??= VolRenderer(
           mVolRect, mVolMaxValue, mVolMinValue, mChildPadding, fixedLength);
@@ -169,17 +173,6 @@ class ChartPainter extends BaseChartPainter {
         tp.paint(canvas, Offset(columnSpace * i - tp.width / 2, y));
       }
     }
-
-//    double translateX = xToTranslateX(0);
-//    if (translateX >= startX && translateX <= stopX) {
-//      TextPainter tp = getTextPainter(getDate(datas[mStartIndex].id));
-//      tp.paint(canvas, Offset(0, y));
-//    }
-//    translateX = xToTranslateX(size.width);
-//    if (translateX >= startX && translateX <= stopX) {
-//      TextPainter tp = getTextPainter(getDate(datas[mStopIndex].id));
-//      tp.paint(canvas, Offset(size.width - tp.width, y));
-//    }
   }
 
 //TODO INFO BOX
@@ -340,11 +333,15 @@ class ChartPainter extends BaseChartPainter {
     return tp;
   }
 
-  String getDate(int date) {
-    intl.Intl.defaultLocale = 'tr';
-
-    return dateFormat(DateTime.fromMillisecondsSinceEpoch(date));
-  }
-
   double getMainY(double y) => mMainRenderer?.getY(y) ?? 0.0;
+
+  String getDate(int date) {
+    if (date == null) {
+      print("Test: " + date.toString());
+      return "null";
+    } else {
+      return formatDate(
+          DateTime.fromMillisecondsSinceEpoch(date), dateFormatter);
+    }
+  }
 }

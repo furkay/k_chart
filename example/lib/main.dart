@@ -101,7 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 volHidden: _volHidden,
                 secondaryState: _secondaryState,
                 fixedLength: 2,
-                isChinese: isChinese,
               ),
             ),
             if (showLoading)

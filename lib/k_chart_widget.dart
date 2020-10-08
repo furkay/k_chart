@@ -18,7 +18,6 @@ class KChartWidget extends StatefulWidget {
   final bool volHidden;
   final SecondaryState secondaryState;
   final bool isLine;
-  final bool isChinese;
   final List<String> timeFormat;
   //当屏幕滚动到尽头会调用，真为拉到屏幕右侧尽头，假为拉到屏幕左侧尽头
   final Function(bool) onLoadMore;
@@ -30,6 +29,7 @@ class KChartWidget extends StatefulWidget {
   final Curve flingCurve;
   final Color lineColor;
   final Color lineFillColor;
+  final DateFormat dateFormatter;
   final Function(bool) isOnDrag;
 
   KChartWidget(this.datas,
@@ -37,10 +37,10 @@ class KChartWidget extends StatefulWidget {
       this.secondaryState = SecondaryState.MACD,
       this.volHidden = false,
       this.isLine,
-      this.isChinese = true,
       this.timeFormat,
       this.onLoadMore,
       this.bgColor,
+      this.dateFormatter,
       this.fixedLength,
       this.maDayList = const [5, 10, 20],
       this.flingTime = 600,
@@ -162,7 +162,8 @@ class _KChartWidgetState extends State<KChartWidget>
                 fixedLength: widget.fixedLength,
                 maDayList: widget.maDayList,
                 lineColor: widget.lineColor,
-                lineFillColor: widget.lineFillColor),
+                lineFillColor: widget.lineFillColor,
+                dateFormatter: widget.dateFormatter),
           ),
           _buildInfoDialog()
         ],
@@ -223,27 +224,6 @@ class _KChartWidgetState extends State<KChartWidget>
 
   void notifyChanged() => setState(() {});
 
-  final List<String> infoNamesCN = [
-    "时间",
-    "开",
-    "高",
-    "低",
-    "收",
-    "涨跌额",
-    "涨跌幅",
-    "成交额"
-  ];
-  final List<String> infoNamesEN = [
-    "Date",
-    "Open",
-    "High",
-    "Low",
-    "Close",
-    "Change",
-    "Change%",
-    "Amount"
-  ];
-
   final List<String> infoNamesTR = [
     "Gün",
     "Açılış",
@@ -268,7 +248,9 @@ class _KChartWidgetState extends State<KChartWidget>
           double upDown = entity.change ?? entity.close - entity.open;
           double upDownPercent = entity.ratio ?? (upDown / entity.open) * 100;
           infos = [
-            getDate(entity.time),
+            getDate(
+              entity.time,
+            ),
             entity.open.toStringAsFixed(widget.fixedLength),
             entity.high.toStringAsFixed(widget.fixedLength),
             entity.low.toStringAsFixed(widget.fixedLength),
@@ -288,13 +270,11 @@ class _KChartWidgetState extends State<KChartWidget>
                     color: ChartColors.selectBorderColor, width: 0.5)),
             child: ListView.builder(
               padding: EdgeInsets.all(4),
-              itemCount: infoNamesCN.length,
+              itemCount: infoNamesTR.length,
               itemExtent: 14.0,
               shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return _buildItem(infos[index],
-                    widget.isChinese ? infoNamesCN[index] : infoNamesTR[index]);
-              },
+              itemBuilder: (context, index) =>
+                  _buildItem(infos[index], infoNamesTR[index]),
             ),
           );
         });
@@ -325,7 +305,8 @@ class _KChartWidgetState extends State<KChartWidget>
       print("Test: " + date.toString());
       return "null";
     } else {
-      return dateFormat(DateTime.fromMillisecondsSinceEpoch(date));
+      return formatDate(
+          DateTime.fromMillisecondsSinceEpoch(date), widget.dateFormatter);
     }
   }
 }

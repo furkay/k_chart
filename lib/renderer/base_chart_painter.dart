@@ -293,16 +293,5 @@ abstract class BaseChartPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(BaseChartPainter oldDelegate) {
-    return true;
-//    return oldDelegate.datas != datas ||
-//        oldDelegate.datas?.length != datas?.length ||
-//        oldDelegate.scaleX != scaleX ||
-//        oldDelegate.scrollX != scrollX ||
-//        oldDelegate.isLongPress != isLongPress ||
-//        oldDelegate.selectX != selectX ||
-//        oldDelegate.isLine != isLine ||
-//        oldDelegate.mainState != mainState ||
-//        oldDelegate.secondaryState != secondaryState;
-  }
+  bool shouldRepaint(BaseChartPainter oldDelegate) => true;
 }
