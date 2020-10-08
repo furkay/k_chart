@@ -25,6 +25,7 @@ class ChartPainter extends BaseChartPainter {
   List<int> maDayList;
   final Color lineColor;
   final Color lineFillColor;
+  final double lineWidth;
   final intl.DateFormat dateFormatter;
   ChartPainter(
       {@required datas,
@@ -42,7 +43,8 @@ class ChartPainter extends BaseChartPainter {
       bool isLine,
       this.bgColor,
       this.fixedLength,
-      this.maDayList})
+      this.maDayList,
+      this.lineWidth})
       : assert(bgColor == null || bgColor.length >= 2),
         super(
             datas: datas,
@@ -66,18 +68,12 @@ class ChartPainter extends BaseChartPainter {
             NumberUtil.getMaxDecimalLength(t.open, t.close, t.high, t.low);
       }
     }
-    mMainRenderer ??= MainRenderer(
-      mMainRect,
-      mMainMaxValue,
-      mMainMinValue,
-      mTopPadding,
-      mainState,
-      isLine,
-      fixedLength,
-      maDayList: maDayList,
-      lineColor: lineColor,
-      lineFillColor: lineFillColor,
-    );
+    mMainRenderer ??= MainRenderer(mMainRect, mMainMaxValue, mMainMinValue,
+        mTopPadding, mainState, isLine, fixedLength,
+        maDayList: maDayList,
+        lineColor: lineColor,
+        lineFillColor: lineFillColor,
+        lineWidth: lineWidth);
     if (mVolRect != null) {
       mVolRenderer ??= VolRenderer(
           mVolRect, mVolMaxValue, mVolMinValue, mChildPadding, fixedLength);
