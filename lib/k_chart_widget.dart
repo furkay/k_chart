@@ -7,7 +7,6 @@ import 'chart_style.dart';
 import 'entity/info_window_entity.dart';
 import 'entity/k_line_entity.dart';
 import 'renderer/chart_painter.dart';
-import 'utils/date_format_util.dart';
 
 enum MainState { MA, BOLL, NONE }
 enum SecondaryState { MACD, KDJ, RSI, WR, NONE }
@@ -231,8 +230,7 @@ class _KChartWidgetState extends State<KChartWidget>
     "Düşük",
     "Kapanış",
     "Değişim",
-    "Değişim%",
-    "Miktar"
+    "Hacim"
   ];
   List<String> infos;
 
@@ -248,16 +246,14 @@ class _KChartWidgetState extends State<KChartWidget>
           double upDown = entity.change ?? entity.close - entity.open;
           double upDownPercent = entity.ratio ?? (upDown / entity.open) * 100;
           infos = [
-            getDate(
-              entity.time,
-            ),
+            getDate(entity.time),
             entity.open.toStringAsFixed(widget.fixedLength),
             entity.high.toStringAsFixed(widget.fixedLength),
             entity.low.toStringAsFixed(widget.fixedLength),
             entity.close.toStringAsFixed(widget.fixedLength),
             "${upDown > 0 ? "+" : ""}${upDown.toStringAsFixed(widget.fixedLength)}",
             "${upDownPercent > 0 ? "+" : ''}${upDownPercent.toStringAsFixed(2)}%",
-            entity.amount.toInt().toString()
+            if (entity.vol != null) entity.vol.toStringAsFixed(4)
           ];
           return Container(
             margin: EdgeInsets.only(
@@ -300,13 +296,12 @@ class _KChartWidgetState extends State<KChartWidget>
     );
   }
 
-  String getDate(int date) {
+  String getDate(DateTime date) {
     if (date == null) {
       print("Test: " + date.toString());
       return "null";
     } else {
-      return formatDate(
-          DateTime.fromMillisecondsSinceEpoch(date), widget.dateFormatter);
+      return widget.dateFormatter.format(date);
     }
   }
 }
