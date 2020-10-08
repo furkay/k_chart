@@ -25,6 +25,7 @@ class KChartWidget extends StatefulWidget {
   final List<int> maDayList;
   final int flingTime;
   final double flingRatio;
+  final double lineWidth;
   final Curve flingCurve;
   final Color lineColor;
   final Color lineFillColor;
@@ -47,6 +48,7 @@ class KChartWidget extends StatefulWidget {
       this.flingCurve = Curves.decelerate,
       this.isOnDrag,
       this.lineColor,
+      this.lineWidth = 1.0,
       this.lineFillColor})
       : assert(maDayList != null);
 
@@ -162,7 +164,8 @@ class _KChartWidgetState extends State<KChartWidget>
                 maDayList: widget.maDayList,
                 lineColor: widget.lineColor,
                 lineFillColor: widget.lineFillColor,
-                dateFormatter: widget.dateFormatter),
+                dateFormatter: widget.dateFormatter,
+                lineWidth: widget.lineWidth),
           ),
           _buildInfoDialog()
         ],
