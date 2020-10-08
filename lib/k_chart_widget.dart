@@ -12,23 +12,6 @@ import 'utils/date_format_util.dart';
 enum MainState { MA, BOLL, NONE }
 enum SecondaryState { MACD, KDJ, RSI, WR, NONE }
 
-class TimeFormat {
-  static const List<String> YEAR_MONTH_DAY = [yyyy, '.', mm, '.', dd];
-
-  //TODO CHOOSEN
-  static const List<String> YEAR_MONTH_DAY_WITH_HOUR = [
-    dd,
-    '.',
-    mm,
-    '.',
-    yyyy,
-    ' ',
-    HH,
-    ':',
-    nn
-  ];
-}
-
 class KChartWidget extends StatefulWidget {
   final List<KLineEntity> datas;
   final MainState mainState;
@@ -55,7 +38,7 @@ class KChartWidget extends StatefulWidget {
       this.volHidden = false,
       this.isLine,
       this.isChinese = true,
-      this.timeFormat = TimeFormat.YEAR_MONTH_DAY,
+      this.timeFormat,
       this.onLoadMore,
       this.bgColor,
       this.fixedLength,
@@ -342,8 +325,7 @@ class _KChartWidgetState extends State<KChartWidget>
       print("Test: " + date.toString());
       return "null";
     } else {
-      return dateFormat(
-          DateTime.fromMillisecondsSinceEpoch(date), widget.timeFormat);
+      return dateFormat(DateTime.fromMillisecondsSinceEpoch(date));
     }
   }
 }
