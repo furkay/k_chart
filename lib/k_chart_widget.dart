@@ -230,6 +230,7 @@ class _KChartWidgetState extends State<KChartWidget>
     "Düşük",
     "Kapanış",
     "Değişim",
+    "Değişim%",
     "Hacim"
   ];
   List<String> infos;
