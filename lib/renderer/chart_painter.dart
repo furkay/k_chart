@@ -87,7 +87,6 @@ class ChartPainter extends BaseChartPainter {
           mChildPadding,
           secondaryState,
           fixedLength);
-    Logger()..wtf("initChartRenderer")..wtf(scaleX);
   }
 
   @override

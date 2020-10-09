@@ -98,9 +98,7 @@ class _KChartWidgetState extends State<KChartWidget>
   Widget build(BuildContext context) {
     if (widget.datas == null || widget.datas.isEmpty) {
       mScrollX = mSelectX = 0.0;
-      Logger()..wtf("datas null or empty");
     }
-    Logger()..wtf("first val of")..wtf(mScaleX);
 
     return GestureDetector(
       onHorizontalDragDown: (details) {
