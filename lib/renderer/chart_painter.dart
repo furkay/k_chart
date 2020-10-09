@@ -3,6 +3,7 @@ import 'dart:async' show StreamSink;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:k_chart/utils/number_util.dart';
+import 'package:logger/logger.dart';
 import '../entity/k_line_entity.dart';
 import '../entity/info_window_entity.dart';
 
@@ -86,8 +87,7 @@ class ChartPainter extends BaseChartPainter {
           mChildPadding,
           secondaryState,
           fixedLength);
-    print("initChartRenderer");
-    print(scaleX);
+    Logger()..wtf("initChartRenderer")..wtf(scaleX);
   }
 
   @override
