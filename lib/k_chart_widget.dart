@@ -60,7 +60,7 @@ class KChartWidget extends StatefulWidget {
 
 class _KChartWidgetState extends State<KChartWidget>
     with TickerProviderStateMixin {
-  double mScaleX = 1.0, mScrollX = 0.0, mSelectX = 0.0;
+  double mScaleX = 1.2, mScrollX = 0.0, mSelectX = 0.0;
   StreamController<InfoWindowEntity> mInfoWindowStream;
   double mWidth = 0;
   AnimationController _controller;
@@ -98,7 +98,7 @@ class _KChartWidgetState extends State<KChartWidget>
   Widget build(BuildContext context) {
     if (widget.datas == null || widget.datas.isEmpty) {
       mScrollX = mSelectX = 0.0;
-      mScaleX = 1.0;
+      Logger()..wtf("datas null or empty");
     }
     Logger()..wtf("first val of")..wtf(mScaleX);
 

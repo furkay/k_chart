@@ -13,7 +13,7 @@ abstract class BaseChartPainter extends CustomPainter {
   MainState mainState = MainState.MA;
   SecondaryState secondaryState = SecondaryState.MACD;
   bool volHidden = false;
-  double scaleX = 1.0, scrollX = 0.0, selectX;
+  double scaleX = 1.1, scrollX = 0.0, selectX;
   bool isLongPress = false;
   bool isLine = false;
 
