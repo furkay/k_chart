@@ -99,6 +99,7 @@ class _KChartWidgetState extends State<KChartWidget>
       mScrollX = mSelectX = 0.0;
       mScaleX = 1.0;
     }
+    print("İLK DEGERİ: " + mScaleX.toString());
     return GestureDetector(
       onHorizontalDragDown: (details) {
         _stopAnimation();
@@ -121,8 +122,6 @@ class _KChartWidgetState extends State<KChartWidget>
       onScaleUpdate: (details) {
         if (isDrag || isLongPress) return;
         mScaleX = (_lastScale * details.scale).clamp(0.01, 200);
-        print(details.toString());
-        print(mScaleX);
         notifyChanged();
       },
       onScaleEnd: (_) {

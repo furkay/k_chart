@@ -86,6 +86,8 @@ class ChartPainter extends BaseChartPainter {
           mChildPadding,
           secondaryState,
           fixedLength);
+    print("initChartRenderer");
+    print(scaleX);
   }
 
   @override
