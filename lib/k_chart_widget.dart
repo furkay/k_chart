@@ -31,7 +31,7 @@ class KChartWidget extends StatefulWidget {
   final Color lineFillColor;
   final DateFormat dateFormatter;
   final Function(bool) isOnDrag;
-
+  final double startingScaleX;
   KChartWidget(this.datas,
       {this.mainState = MainState.MA,
       this.secondaryState = SecondaryState.MACD,
@@ -49,6 +49,7 @@ class KChartWidget extends StatefulWidget {
       this.isOnDrag,
       this.lineColor,
       this.lineWidth = 1.0,
+      this.startingScaleX,
       this.lineFillColor})
       : assert(maDayList != null);
 
@@ -74,8 +75,8 @@ class _KChartWidgetState extends State<KChartWidget>
   @override
   void initState() {
     Intl.defaultLocale = 'tr';
-
     super.initState();
+    mScaleX = widget.startingScaleX;
     mInfoWindowStream = StreamController<InfoWindowEntity>();
   }
 
@@ -257,7 +258,8 @@ class _KChartWidgetState extends State<KChartWidget>
             entity.close.toStringAsFixed(widget.fixedLength),
             "${upDown > 0 ? "+" : ""}${upDown.toStringAsFixed(widget.fixedLength)}",
             "${upDownPercent > 0 ? "+" : ''}${upDownPercent.toStringAsFixed(2)}%",
-            if (entity.vol != null) entity.vol.toStringAsFixed(4)
+            if (entity.vol != null || entity.vol != -1.0)
+              entity.vol.toStringAsFixed(4)
           ];
           return Container(
             margin: EdgeInsets.only(
