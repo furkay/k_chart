@@ -120,7 +120,7 @@ class _KChartWidgetState extends State<KChartWidget>
       },
       onScaleUpdate: (details) {
         if (isDrag || isLongPress) return;
-        mScaleX = (_lastScale * details.scale).clamp(0.01, 10);
+        mScaleX = (_lastScale * details.scale).clamp(0.01, 200);
         print(details.toString());
         print("mscalex");
         notifyChanged();
